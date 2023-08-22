@@ -4,6 +4,7 @@ const socketIo = require('socket.io');
 const cors = require('cors')
 const path = require('path')
 const fs = require('fs')
+require('dotenv').config()
 
 const app = express();
 
@@ -19,7 +20,7 @@ const server = https.createServer(httpsOptions,app);
 
 const io = socketIo(server, {
   cors: {
-    origin: "https://192.168.240.197:5000",
+    origin: "https://192.168.240.197:5173",
     methods: ["GET", "POST"]
   }
 });
