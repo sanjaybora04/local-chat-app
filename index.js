@@ -78,7 +78,7 @@ io.on('connection', (socket) => {
   socket.on('message', (message) => {
     if (message.reciever) {
       io.to(message.reciever.id).emit('message', { ...message, sender: {id:socket.id,name} })
-      socket.emit('message', { ...message, sender: {id:socket.id,name} })
+      // socket.emit('message', { ...message, sender: {id:socket.id,name} })
     } else {
       io.emit('message', { ...message, sender: {id:socket.id,name} });
     }
