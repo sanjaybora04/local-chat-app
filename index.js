@@ -1,5 +1,5 @@
 const express = require('express');
-const https = require('https');
+const http = require('http');
 const socketIo = require('socket.io');
 const cors = require('cors')
 const path = require('path')
@@ -16,11 +16,11 @@ var httpsOptions = {
 httpsOptions.key = fs.readFileSync('/home/anonymous/Desktop/local_chat_app/cert/cert.key');
 httpsOptions.cert = fs.readFileSync('/home/anonymous/Desktop/local_chat_app/cert/cert.crt');
 
-const server = https.createServer(httpsOptions,app);
+const server = http.createServer(app);
 
 const io = socketIo(server, {
   cors: {
-    origin: "https://192.168.240.197:5173",
+    origin: "http://192.168.240.197:5173",
     methods: ["GET", "POST"]
   }
 });
