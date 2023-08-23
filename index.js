@@ -13,8 +13,8 @@ var httpsOptions = {
   cert: null
 };
 
-httpsOptions.key = fs.readFileSync('/home/anonymous/Desktop/local_chat_app/cert/cert.key');
-httpsOptions.cert = fs.readFileSync('/home/anonymous/Desktop/local_chat_app/cert/cert.crt');
+// httpsOptions.key = fs.readFileSync('/home/anonymous/Desktop/local_chat_app/cert/cert.key');
+// httpsOptions.cert = fs.readFileSync('/home/anonymous/Desktop/local_chat_app/cert/cert.crt');
 
 const server = http.createServer(app);
 
