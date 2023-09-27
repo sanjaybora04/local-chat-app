@@ -3,7 +3,6 @@ const http = require('http');
 const socketIo = require('socket.io');
 const cors = require('cors')
 const path = require('path')
-const fs = require('fs')
 require('dotenv').config()
 
 const app = express();
@@ -20,7 +19,7 @@ const server = http.createServer(app);
 
 const io = socketIo(server, {
   cors: {
-    origin: "http://192.168.240.197:5173",
+    origin: process.env.CLIENT_URL,
     methods: ["GET", "POST"]
   }
 });
@@ -76,9 +75,9 @@ io.on('connection', (socket) => {
   updateUsersList()
 
   socket.on('message', (message) => {
-    if (message.reciever) {
+    if (message.reciever.id) {
       io.to(message.reciever.id).emit('message', { ...message, sender: {id:socket.id,name} })
-      // socket.emit('message', { ...message, sender: {id:socket.id,name} })
+      socket.emit('message', { ...message, sender: {id:socket.id,name} })
     } else {
       io.emit('message', { ...message, sender: {id:socket.id,name} });
     }
